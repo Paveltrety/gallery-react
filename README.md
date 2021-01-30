@@ -6,6 +6,7 @@
 ### Stack:
 
 - ReactJS + хуки
+- TypeScript
 - Redux
 - React-redux
 - Redux thunk
