@@ -1,10 +1,18 @@
 import React from 'react';
+//  type propsType = {
+//     indexPhotoActive: number
+//     photosLength:number
+//     id: number
+//     modalActive: boolean
+//     url: string
+//     title: string
+//     setModalActive: (status: boolean, photoId: number, indexPhotoActive: number) => void
+//  }
 
-
-const Modal = (props) => {
+const Modal = (props: any) => {
 
     let nextOne = () => {
-        if (props.indexPhotoActive < props.photosLength - 1) {
+        if (props.indexPhotoActive  < props.photosLength - 1) {
             props.setModalActive(true, props.id + 1, props.indexPhotoActive + 1)
         }
     }
@@ -19,18 +27,20 @@ const Modal = (props) => {
         props.setModalActive(false, props.id, props.indexPhotoActive)
     }
 
-    let handleOutsideClick = (event) => {
+    let handleOutsideClick = (event: any ) => {
         const path = event.path || (event.composedPath && event.composedPath());
         if (!path.includes(sortRef.current)) {
             closeWindow();
         }
     };
 
-    const sortRef = React.useRef();
+    
 
     React.useEffect(() => {
-        document.querySelector('.modal__wrapper').addEventListener('click', handleOutsideClick);
+        document.querySelector('.modal__wrapper')?.addEventListener('click', handleOutsideClick);
     }, []);
+
+    const sortRef = React.useRef<HTMLDivElement>(null);
 
     return (
         <>

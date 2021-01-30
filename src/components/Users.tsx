@@ -3,10 +3,12 @@ import { useSelector, useDispatch } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 
 import { fetchUsers, setActiveUser } from '../redux/actions/usersAction';
+import { usersType } from '../redux/reducers/usersReducer';
+import { stateType } from '../redux/store';
 
 const Users = () => {
     const dispatch = useDispatch();
-    const state = useSelector(state => ({
+    const state = useSelector((state: stateType) => ({
         users: state.usersPage.users,
         activeUser: state.usersPage.activeUser
     }))
@@ -15,16 +17,13 @@ const Users = () => {
         dispatch(fetchUsers())
     }, [dispatch]);
     return (
-
-
         <header className="header">
             <div className="users">
-
                 <nav className="users__nav">
                     <ul className="users__list">
 
                         {
-                            state.users.map(item => {
+                            state.users.map((item: usersType) => {
                                 return (
                                     <li
                                         className="users__list-item"
@@ -36,23 +35,10 @@ const Users = () => {
                                 )
                             })
                         }
-
-
                     </ul>
                 </nav>
             </div>
-
-        </header>
-
-
-
-
-
-
-
-
-
-
+        </header> 
     )
 }
 
