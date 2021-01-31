@@ -1,18 +1,22 @@
 import React from 'react';
-//  type propsType = {
-//     indexPhotoActive: number
-//     photosLength:number
-//     id: number
-//     modalActive: boolean
-//     url: string
-//     title: string
-//     setModalActive: (status: boolean, photoId: number, indexPhotoActive: number) => void
-//  }
 
-const Modal = (props: any) => {
+type propsType = {
+    albumId: number
+    id: number
+    indexPhotoActive: number
+    modalActive: boolean
+    photosLength: number
+    thumbnailUrl: string
+    title: string
+    url: string
+    setModalActive: (status: boolean, photoId: number, indexPhotoActive: number) => void
+}
+
+const Modal = (props: propsType) => {
+    console.log(props)
 
     let nextOne = () => {
-        if (props.indexPhotoActive  < props.photosLength - 1) {
+        if (props.indexPhotoActive < props.photosLength - 1) {
             props.setModalActive(true, props.id + 1, props.indexPhotoActive + 1)
         }
     }
@@ -27,14 +31,13 @@ const Modal = (props: any) => {
         props.setModalActive(false, props.id, props.indexPhotoActive)
     }
 
-    let handleOutsideClick = (event: any ) => {
+    let handleOutsideClick = (event: any) => {
         const path = event.path || (event.composedPath && event.composedPath());
         if (!path.includes(sortRef.current)) {
             closeWindow();
         }
     };
 
-    
 
     React.useEffect(() => {
         document.querySelector('.modal__wrapper')?.addEventListener('click', handleOutsideClick);
@@ -60,6 +63,7 @@ const Modal = (props: any) => {
             }
         </>
     )
+
 }
 
 export default Modal

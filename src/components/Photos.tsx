@@ -21,13 +21,11 @@ const Photos = () => {
         photosForAlbum: state.photos.photosForAlbum,
         isLoaded: state.photos.isLoaded,
         modalActive: state.photos.modalActive,
-        fullPhoto: state.photos.fullPhoto,
-        indexPhotoActive: state.photos.indexPhotoActive
+        fullPhoto: state.photos.fullPhoto!,
+        indexPhotoActive: state.photos.indexPhotoActive!
     }))
 
-    let photosLength = state.photosForAlbum.length;
-
-
+    let photosLength: number = state.photosForAlbum.length
 
     useEffect(() => {
         dispatch(fetchPhotoForAlbum(+albumId))
@@ -57,9 +55,10 @@ const Photos = () => {
                 </div>
             }
             {state.modalActive &&
-                <Modal {...state.fullPhoto}
+                <Modal 
+                    {...state.fullPhoto}
                     modalActive={state.modalActive}
-                    setModalActive={(status: boolean, photoId: number, indexPhotoActive: number) => dispatch(setModalActive(status, photoId, indexPhotoActive))}
+                    setModalActive={(status: boolean, photoId: number, indexPhotoActive: number ) => dispatch(setModalActive(status, photoId, indexPhotoActive))}
                     indexPhotoActive={state.indexPhotoActive}
                     photosLength={photosLength}
                 />}

@@ -21,7 +21,6 @@ const Users = () => {
             <div className="users">
                 <nav className="users__nav">
                     <ul className="users__list">
-
                         {
                             state.users.map((item: usersType) => {
                                 return (
@@ -30,7 +29,6 @@ const Users = () => {
                                         key={item.id}
                                         onClick={() => dispatch(setActiveUser(item.id))}>
                                         <NavLink to={`/user/${item.id}`} className={state.activeUser === item.id ? 'user__list-link-active' : "user__list-link"}   > {item.username}</NavLink>
-
                                     </li>
                                 )
                             })
